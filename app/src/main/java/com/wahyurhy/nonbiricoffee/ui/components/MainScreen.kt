@@ -14,8 +14,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -43,18 +46,18 @@ fun MainScreen() {
         MenuItem("Espresso", "Small and strong", "$20.00", R.drawable.espresso)
     )
 
+    // State to track the total cart item count
+    var cartItemCount by remember { mutableIntStateOf(0) }
+
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
         topBar = {
             TopBarComponent(
-                profileImage = R.drawable.squareme, // Replace with your drawable resource
+                profileImage = R.drawable.squareme, // Replace with your profile image drawable
                 location = "Lagos, Nigeria",
-                onCartClick = {
-                    // Handle cart click action
-                },
-                onNotificationClick = {
-                    // Handle notification click action
-                }
+                cartItemCount = cartItemCount, // Pass the cart item count
+                onCartClick = { /* Handle cart click */ },
+                onNotificationClick = { /* Handle notification click */ }
             )
         },
         bottomBar = { BottomNavigationBar() }
@@ -85,7 +88,10 @@ fun MainScreen() {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            MenuList(items = menuItems)
+            // Pass cartItemCount modifier to MenuList
+            MenuList(items = menuItems, onItemCountChange = { count ->
+                cartItemCount = count // Update total cart item count
+            })
         }
     }
 }
