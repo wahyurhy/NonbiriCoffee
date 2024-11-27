@@ -37,7 +37,8 @@
 ---
 
 ## 📸 Cuplikan Layar
-![image](https://github.com/user-attachments/assets/5011e507-c92b-4327-8c11-d040781159c4)
+![image](https://github.com/user-attachments/assets/df7964c4-be28-4365-8956-46ab21352ffb)
+
 
 ---
 
